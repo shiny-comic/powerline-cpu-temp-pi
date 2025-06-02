@@ -20,7 +20,11 @@ def cpu_temp(pl, format="{value:.0f}°C", threshold_good=50, threshold_bad=90):
     Highlight groups used: ``cpu_temp_gradient`` (gradient) or ``cpu_temp``.
     '''
 
-    temp = psutil.sensors_temperatures()['coretemp'][0].current
+    temp_info = psutil.sensors_temperatures()
+    if "coretemp" in temp_info:
+        temp = temp_info["coretemp"][0].current
+    elif "cpu_thermal" in temp_info:
+        temp = temp_info["cpu_thermal"][0].current
     if temp < threshold_good:
         gradient_level = 0
     elif temp < threshold_bad:
