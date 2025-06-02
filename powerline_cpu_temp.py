@@ -1,7 +1,8 @@
 import psutil
 
+
 def cpu_temp(pl, format="{value:.0f}°C", threshold_good=50, threshold_bad=90):
-    '''Return cpu temperature.
+    """Return cpu temperature.
 
     :param str format:
         format string, receives ``value`` as an argument
@@ -18,7 +19,7 @@ def cpu_temp(pl, format="{value:.0f}°C", threshold_good=50, threshold_bad=90):
     Divider highlight group used: ``background:divider``.
 
     Highlight groups used: ``cpu_temp_gradient`` (gradient) or ``cpu_temp``.
-    '''
+    """
 
     temp_info = psutil.sensors_temperatures()
     if "coretemp" in temp_info:
@@ -28,14 +29,16 @@ def cpu_temp(pl, format="{value:.0f}°C", threshold_good=50, threshold_bad=90):
     if temp < threshold_good:
         gradient_level = 0
     elif temp < threshold_bad:
-        gradient_level = (temp - threshold_good) * 100.0 / (threshold_bad - threshold_good)
+        gradient_level = (
+            (temp - threshold_good) * 100.0 / (threshold_bad - threshold_good)
+        )
     else:
         gradient_level = 100
     return [
         {
-            'contents': format.format(value=temp),
-            'gradient_level': gradient_level,
-            'highlight_groups': ['cpu_temp_gradient', 'cpu_temp'],
-            'divider_highlight_group': 'background:divider'
+            "contents": format.format(value=temp),
+            "gradient_level": gradient_level,
+            "highlight_groups": ["cpu_temp_gradient", "cpu_temp"],
+            "divider_highlight_group": "background:divider",
         }
     ]
