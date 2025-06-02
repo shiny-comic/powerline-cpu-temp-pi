@@ -11,17 +11,17 @@ with open(readme) as f:
     long_description = f.read()
 
 setup(
-    name='powerline-cpu-temp',
+    name="powerline-cpu-temp-pi",
     version=version,
-    description='A Powerline segment to show CPU temperature',
     long_description_content_type='text/markdown',
+    description="An improved Powerline segment to show CPU temperature",
     long_description=long_description,
-    author='DCsunset',
     author_email='DCsunset@protonmail.com',
     license='MIT',
-    url='https://github.com/DCsunset/powerline-cpu-temp',
 
     install_requires=['psutil'],
+    author="shiny-comic",
+    url="https://github.com/shiny-comic/powerline-cpu-temp-pi",
     # Add to lib so that it can be included
     py_modules=['powerline_cpu_temp'],
 
